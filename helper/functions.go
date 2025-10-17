@@ -6,7 +6,7 @@ import (
 
 var startTime = time.Now()
 
-func Hello() int {
+func Uptime() int {
 	uptimeMinutes := int(time.Since(startTime).Minutes())
 	return uptimeMinutes
 }

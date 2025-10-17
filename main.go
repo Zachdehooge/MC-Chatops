@@ -49,11 +49,10 @@ var (
 
 	commandHandlers = map[string]func(s *discordgo.Session, i *discordgo.InteractionCreate){
 		"botstatus": func(s *discordgo.Session, i *discordgo.InteractionCreate) {
-			uptimeMinutes := int(time.Since(startTime).Minutes())
 			s.InteractionRespond(i.Interaction, &discordgo.InteractionResponse{
 				Type: discordgo.InteractionResponseChannelMessageWithSource,
 				Data: &discordgo.InteractionResponseData{
-					Content: fmt.Sprintf("Bot Uptime: %d minute(s)", uptimeMinutes),
+					Content: fmt.Sprintf("Bot Uptime: %d minute(s)", h.Uptime()),
 				},
 			})
 		},
@@ -61,7 +60,7 @@ var (
 			s.InteractionRespond(i.Interaction, &discordgo.InteractionResponse{
 				Type: discordgo.InteractionResponseChannelMessageWithSource,
 				Data: &discordgo.InteractionResponseData{
-					Content: fmt.Sprintf("Server Uptime: %d minute(s)\nServer Status: %d", h.Hello(), h.Hello()),
+					Content: fmt.Sprintf("Server Uptime: %d minute(s)\nServer Status: %d", h.Uptime(), h.Uptime()),
 				},
 			})
 		},
