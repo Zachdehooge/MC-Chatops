@@ -6,7 +6,7 @@ import (
 	"os"
 	"os/signal"
 
-	h "github.com/zachdehooge/MC-Chatops/helper"
+	f "github.com/zachdehooge/MC-Chatops/functions"
 
 	"github.com/bwmarrin/discordgo"
 	"github.com/joho/godotenv"
@@ -50,7 +50,7 @@ var (
 			s.InteractionRespond(i.Interaction, &discordgo.InteractionResponse{
 				Type: discordgo.InteractionResponseChannelMessageWithSource,
 				Data: &discordgo.InteractionResponseData{
-					Content: fmt.Sprintf("Bot Uptime: %d minute(s)", h.Uptime()),
+					Content: fmt.Sprintf("Bot Uptime: %d minute(s)", f.Uptime()),
 				},
 			})
 		},
@@ -58,7 +58,7 @@ var (
 			s.InteractionRespond(i.Interaction, &discordgo.InteractionResponse{
 				Type: discordgo.InteractionResponseChannelMessageWithSource,
 				Data: &discordgo.InteractionResponseData{
-					Content: fmt.Sprintf("Server Uptime: %d minute(s)\nServer Status: %d", h.Uptime(), h.Uptime()),
+					Content: fmt.Sprintf("Server Uptime: %d minute(s)\nServer Status: %d", f.Uptime(), f.Uptime()),
 				},
 			})
 		},
