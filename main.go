@@ -5,7 +5,6 @@ import (
 	"log"
 	"os"
 	"os/signal"
-	"time"
 
 	h "github.com/zachdehooge/MC-Chatops/helper"
 
@@ -14,7 +13,6 @@ import (
 )
 
 // Global Variables
-var startTime time.Time
 var s *discordgo.Session
 
 func init() {
@@ -83,7 +81,6 @@ func main() {
 	})
 
 	err := s.Open()
-	startTime = time.Now()
 	if err != nil {
 		log.Fatalf("Cannot open the session: %v", err)
 	}
