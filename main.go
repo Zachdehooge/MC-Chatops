@@ -7,6 +7,8 @@ import (
 	"os/signal"
 	"time"
 
+	h "github.com/zachdehooge/MC-Chatops/helper"
+
 	"github.com/bwmarrin/discordgo"
 	"github.com/joho/godotenv"
 )
@@ -30,14 +32,14 @@ func init() {
 var (
 	commands = []*discordgo.ApplicationCommand{
 		{
-			Name: "botuptime",
+			Name: "botstatus",
 			// All commands and options must have a description
 			// Commands/options without description will fail the registration
 			// of the command.
 			Description: "bot uptime",
 		},
 		{
-			Name: "serveruptime",
+			Name: "serverstatus",
 			// All commands and options must have a description
 			// Commands/options without description will fail the registration
 			// of the command.
@@ -46,7 +48,7 @@ var (
 	}
 
 	commandHandlers = map[string]func(s *discordgo.Session, i *discordgo.InteractionCreate){
-		"botuptime": func(s *discordgo.Session, i *discordgo.InteractionCreate) {
+		"botstatus": func(s *discordgo.Session, i *discordgo.InteractionCreate) {
 			uptimeMinutes := int(time.Since(startTime).Minutes())
 			s.InteractionRespond(i.Interaction, &discordgo.InteractionResponse{
 				Type: discordgo.InteractionResponseChannelMessageWithSource,
@@ -55,12 +57,11 @@ var (
 				},
 			})
 		},
-		"serveruptime": func(s *discordgo.Session, i *discordgo.InteractionCreate) {
-			uptimeMinutes := int(time.Since(startTime).Minutes())
+		"serverstatus": func(s *discordgo.Session, i *discordgo.InteractionCreate) {
 			s.InteractionRespond(i.Interaction, &discordgo.InteractionResponse{
 				Type: discordgo.InteractionResponseChannelMessageWithSource,
 				Data: &discordgo.InteractionResponseData{
-					Content: fmt.Sprintf("Server Uptime: %d minute(s)", uptimeMinutes),
+					Content: fmt.Sprintf("Server Uptime: %d minute(s)\nServer Status: %d", h.Hello(), h.Hello()),
 				},
 			})
 		},
