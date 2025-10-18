@@ -42,6 +42,18 @@ var (
 			// of the command.
 			Description: "server uptime",
 		},
+		{
+			Name:        "start",
+			Description: "starts the minecraft server",
+		},
+		{
+			Name:        "stop",
+			Description: "stops the minecraft server",
+		},
+		{
+			Name:        "scale",
+			Description: "scales the minecraft server | default is auto",
+		},
 	}
 
 	commandHandlers = map[string]func(s *discordgo.Session, i *discordgo.InteractionCreate){
@@ -58,6 +70,30 @@ var (
 				Type: discordgo.InteractionResponseChannelMessageWithSource,
 				Data: &discordgo.InteractionResponseData{
 					Content: fmt.Sprintf("Server Uptime: %s\nServer Response Code: %v", h.Uptime(), h.ServerStatus()),
+				},
+			})
+		},
+		"start": func(s *discordgo.Session, i *discordgo.InteractionCreate) {
+			s.InteractionRespond(i.Interaction, &discordgo.InteractionResponse{
+				Type: discordgo.InteractionResponseChannelMessageWithSource,
+				Data: &discordgo.InteractionResponseData{
+					Content: "Starting the server",
+				},
+			})
+		},
+		"stop": func(s *discordgo.Session, i *discordgo.InteractionCreate) {
+			s.InteractionRespond(i.Interaction, &discordgo.InteractionResponse{
+				Type: discordgo.InteractionResponseChannelMessageWithSource,
+				Data: &discordgo.InteractionResponseData{
+					Content: "Stopping the server",
+				},
+			})
+		},
+		"scale": func(s *discordgo.Session, i *discordgo.InteractionCreate) {
+			s.InteractionRespond(i.Interaction, &discordgo.InteractionResponse{
+				Type: discordgo.InteractionResponseChannelMessageWithSource,
+				Data: &discordgo.InteractionResponseData{
+					Content: "Server scaling is set to: ",
 				},
 			})
 		},
