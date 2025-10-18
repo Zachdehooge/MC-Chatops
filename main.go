@@ -6,10 +6,9 @@ import (
 	"os"
 	"os/signal"
 
-	f "github.com/zachdehooge/MC-Chatops/functions"
-
 	"github.com/bwmarrin/discordgo"
 	"github.com/joho/godotenv"
+	h "github.com/zachdehooge/MC-Chatops/functions"
 )
 
 // Global Variables
@@ -50,11 +49,7 @@ var (
 			s.InteractionRespond(i.Interaction, &discordgo.InteractionResponse{
 				Type: discordgo.InteractionResponseChannelMessageWithSource,
 				Data: &discordgo.InteractionResponseData{
-<<<<<<< Updated upstream
-					Content: fmt.Sprintf("Bot Uptime: %d minute(s)", f.Uptime()),
-=======
 					Content: fmt.Sprintf("Bot Uptime: %s", h.Uptime()),
->>>>>>> Stashed changes
 				},
 			})
 		},
@@ -62,11 +57,7 @@ var (
 			s.InteractionRespond(i.Interaction, &discordgo.InteractionResponse{
 				Type: discordgo.InteractionResponseChannelMessageWithSource,
 				Data: &discordgo.InteractionResponseData{
-<<<<<<< Updated upstream
-					Content: fmt.Sprintf("Server Uptime: %d minute(s)\nServer Status: %d", f.Uptime(), f.Uptime()),
-=======
 					Content: fmt.Sprintf("Server Uptime: %s\nServer Response Code: %v", h.Uptime(), h.ServerStatus()),
->>>>>>> Stashed changes
 				},
 			})
 		},
